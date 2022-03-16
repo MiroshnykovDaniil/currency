@@ -1,6 +1,7 @@
 package com.example.currency.config;
 
 
+import com.example.currency.view.ConvertController;
 import com.example.currency.view.TabsController;
 import com.example.currency.view.ViewController;
 import javafx.stage.Stage;
@@ -24,4 +25,7 @@ public class AppConfig {
 
     @Bean
     public TabsController tabsController(){return new TabsController();}
+
+    @Bean
+    public ConvertController convertController(){return new ConvertController();}
 }

@@ -13,13 +13,4 @@ public class ViewController {
     @Autowired
     TabsController tabsController;
 
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected TabsController onHelloButtonClick() {
-        return tabsController;
-    }
-
-
 }

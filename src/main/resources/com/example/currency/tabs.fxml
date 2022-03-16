@@ -8,7 +8,9 @@
   <tabs>
     <Tab fx:id="ConvertTab" text="ConvertTab">
          <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+             <fx:include source="convert.fxml"/>
+
+<!--             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />-->
          </content></Tab>
     <Tab fx:id="CurrencyTab" text="CurrencyTab">
          <content>

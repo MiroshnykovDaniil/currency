@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TabsController extends VBox {
+public class TabsController {
 
     @FXML
     private TabPane TabPane;
