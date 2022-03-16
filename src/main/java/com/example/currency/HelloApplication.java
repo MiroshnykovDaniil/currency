@@ -24,7 +24,8 @@ public class HelloApplication extends Application {
 
         fxmlLoader.setControllerFactory(context::getBean);
 
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
+      //  Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
