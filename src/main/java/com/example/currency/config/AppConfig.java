@@ -1,10 +1,10 @@
 package com.example.currency.config;
 
 
-import com.example.currency.view.ConvertController;
-import com.example.currency.view.RatesController;
-import com.example.currency.view.TabsController;
-import com.example.currency.view.ViewController;
+import com.example.currency.view.ConvertView;
+import com.example.currency.view.RatesView;
+import com.example.currency.view.TabsView;
+import com.example.currency.view.MainView;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,16 +19,16 @@ public class AppConfig {
     }
 
     @Bean
-    public ViewController viewModel(){
-        return new ViewController();
+    public MainView viewModel(){
+        return new MainView();
     }
 
     @Bean
-    public TabsController tabsController(){return new TabsController();}
+    public TabsView tabsController(){return new TabsView();}
 
     @Bean
-    public ConvertController convertController(){return new ConvertController();}
+    public ConvertView convertController(){return new ConvertView();}
 
     @Bean
-    public RatesController ratesController(){return new RatesController();}
+    public RatesView ratesController(){return new RatesView();}
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.currency.view.RatesController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.currency.view.RatesView">
    <children>
       <ComboBox fx:id="currencyCombobox" layoutX="51.0" layoutY="55.0" prefWidth="150.0" />
       <Label fx:id="currencyLabel" layoutX="51.0" layoutY="21.0" text="Currency" />

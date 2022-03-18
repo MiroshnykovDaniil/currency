@@ -4,5 +4,5 @@ package com.example.currency.view;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConvertController {
+public class ConvertView {
 }

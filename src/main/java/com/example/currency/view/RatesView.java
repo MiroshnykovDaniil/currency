@@ -7,7 +7,7 @@ import javafx.scene.control.TableView;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RatesController {
+public class RatesView {
 
 
     @FXML
