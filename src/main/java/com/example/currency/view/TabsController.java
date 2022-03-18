@@ -1,6 +1,5 @@
 package com.example.currency.view;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -18,6 +17,5 @@ public class TabsController {
 
     @FXML
     private Tab CurrencyTab;
-
 
 }
