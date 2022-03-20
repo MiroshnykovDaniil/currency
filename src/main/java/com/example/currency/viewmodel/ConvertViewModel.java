@@ -25,8 +25,8 @@ public class ConvertViewModel {
         return FXCollections.observableList(currencyList).sorted();
     }
 
-    public void exchange(Currency fromCurrency, Currency toCurrency, BigDecimal value){
-
+    public BigDecimal exchange(Currency fromCurrency, Currency toCurrency, BigDecimal value) throws URISyntaxException, NoSuchAlgorithmException, IOException, InterruptedException, KeyManagementException {
+        return CurrencyApi.convert(fromCurrency.getCurrencyCode(),toCurrency.getCurrencyCode(),value.toString());
     }
 
 }

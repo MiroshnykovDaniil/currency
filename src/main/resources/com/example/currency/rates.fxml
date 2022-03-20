@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -10,12 +9,8 @@
    <children>
       <ComboBox fx:id="currencyCombobox" layoutX="51.0" layoutY="55.0" prefWidth="150.0" />
       <Label fx:id="currencyLabel" layoutX="51.0" layoutY="21.0" text="Currency" />
-      <Label fx:id="ratesLabel" layoutX="51.0" layoutY="105.0" text="Rates" />
-      <TableView fx:id="ratesTableView" layoutX="51.0" layoutY="131.0" prefHeight="134.0" prefWidth="279.0">
-        <columns>
-          <TableColumn prefWidth="102.0" text="Currency" />
-          <TableColumn prefWidth="110.0" text="Amount" />
-        </columns>
-      </TableView>
+      <Label fx:id="ratesLabel" layoutX="220.0" layoutY="21.0" text="Rates" />
+      <TableView fx:id="ratesTableView" layoutX="220.0" layoutY="55.0" prefHeight="134.0" prefWidth="279.0" />
+      <ComboBox fx:id="addCurrencyCombobox" layoutX="51.0" layoutY="164.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,13 +32,6 @@ public class ConvertView implements Initializable {
     @FXML
     private Button swapButton;
 
-//    @FXML
-//    private CurrencyField amountTextField;
-//
-//    public ConvertView() {
-//        amountTextField = new CurrencyField(Currency.getInstance("EUR"),3.00);
-//    }
-
     @FXML
     private ComboBox<Currency> fromCurrencyComboBox;
 
@@ -51,10 +44,15 @@ public class ConvertView implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
+    @FXML
+    private CurrencyField amountTextField;
+
+    @FXML
+    private Label resultLabel=new Label();
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
         try {
             convertViewModel.initCurrencyList();
         } catch (URISyntaxException e) {
@@ -74,7 +72,6 @@ public class ConvertView implements Initializable {
         fromCurrencyComboBox.getSelectionModel().select(Currency.getInstance("USD"));
         toCurrencyCombobox.getSelectionModel().select(Currency.getInstance("UAH"));
 
-        CurrencyField
         amountTextField = new CurrencyField(fromCurrencyComboBox.getValue(), BigDecimal.ONE);
 
         anchorPane.getChildren().add(amountTextField);
@@ -85,6 +82,7 @@ public class ConvertView implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends Currency> observableValue, Currency oldValue, Currency newValue) {
+                resultLabel.setText("");
                 amountTextField.setCurrencyFormat(newValue);
             };
         });
@@ -94,18 +92,32 @@ public class ConvertView implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                resultLabel.setText("");
                 System.out.println(newValue.doubleValue());
             }
         });
     }
 
     @FXML
-    public void exchange(){
-
+    public void exchange() throws URISyntaxException, NoSuchAlgorithmException, IOException, InterruptedException, KeyManagementException {
+        resultLabel.setText("");
+        BigDecimal result = convertViewModel.exchange(fromCurrencyComboBox.getValue(),toCurrencyCombobox.getValue(),amountTextField.getAmount());
+        resultLabel = new Label();
+        resultLabel.setText(
+                fromCurrencyComboBox.getValue()+" "
+                +amountTextField.getAmount()+" = "
+                +toCurrencyCombobox.getValue()+" "
+                +result
+        );
+        resultLabel.setLayoutX(40);
+        resultLabel.setLayoutY(100);
+        anchorPane.getChildren().add(resultLabel);
     }
 
     @FXML
     private void handleButton(){
+        resultLabel.setText("");
+
         Currency from = fromCurrencyComboBox.getValue();
         Currency to = toCurrencyCombobox.getValue();
 

@@ -2,12 +2,12 @@ package com.example.currency.viewmodel;
 
 
 import com.example.currency.api.CurrencyApi;
+import com.example.currency.model.Rate;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.net.ssl.SSLContext;
@@ -23,14 +23,26 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
-
 @Component
 public class RatesViewModel {
 
     private List<Currency> currencyList=new ArrayList<>();
 
+    public ObservableList<Rate> rates;
+
     public void initCurrencyList() throws URISyntaxException, IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
         currencyList = CurrencyApi.currencyList;
+    }
+
+
+
+    public ObservableList<Rate> getRatesList(Currency base) throws URISyntaxException, NoSuchAlgorithmException, IOException, InterruptedException, KeyManagementException {
+        List<Rate> list = CurrencyApi.getRatesList(base.getCurrencyCode());
+        rates = FXCollections.observableArrayList(list);
+
+        return rates.sorted();
+
+
     }
 
     public ObservableList<Currency> getCurrencyList(){
@@ -69,23 +81,6 @@ public class RatesViewModel {
 
         return FXCollections.observableList(currencies).sorted();
     }
-
-//    public void t() throws IOException {
-//        URL url = new URL("https://openexchangerates.org/api/latest.json?app_id=80587f94bc224e188938780c90a29f32");
-//        try (InputStream is = url.openStream();
-//             JsonReader rdr = Json.createReader(is)) {
-//
-//            JsonObject obj = rdr.readObject();
-//                System.out.println(obj.toString());
-//                 JsonArray results = obj.getJsonArray("rates");
-//                 for (JsonObject result : results.getValuesAs(JsonObject.class)) {
-//                         System.out.print(result.getJsonObject("from").getString("name"));
-//                         System.out.print(": ");
-//                         System.out.println(result.getString("message", ""));
-//                         System.out.println("-----------");
-//                    }
-//             }
-//    }
 
     public ObservableList<String>
              getCountriesList(){

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.example.currency.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -13,6 +12,6 @@
 <!--      <CurrencyField fx:id="amountTextField" layoutX="37.0" layoutY="58.0" />-->
       <ComboBox fx:id="fromCurrencyComboBox" layoutX="201.0" layoutY="58.0" prefWidth="150.0" />
       <ComboBox fx:id="toCurrencyCombobox" layoutX="417.0" layoutY="58.0" prefWidth="150.0" />
-      <Button fx:id="convertButton" layoutX="509.0" layoutY="103.0" mnemonicParsing="false" text="Convert" />
+      <Button fx:id="convertButton" layoutX="509.0" layoutY="100.0" mnemonicParsing="false" onAction="#exchange" text="Convert" />
    </children>
 </AnchorPane>
