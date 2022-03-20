@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -22,6 +23,10 @@ public class ConvertViewModel {
 
     public ObservableList<Currency> getCurrencyList(){
         return FXCollections.observableList(currencyList).sorted();
+    }
+
+    public void exchange(Currency fromCurrency, Currency toCurrency, BigDecimal value){
+
     }
 
 }

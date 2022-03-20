@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -74,7 +75,7 @@ public class ConvertView implements Initializable {
         toCurrencyCombobox.getSelectionModel().select(Currency.getInstance("UAH"));
 
         CurrencyField
-        amountTextField = new CurrencyField(fromCurrencyComboBox.getValue(),1.00);
+        amountTextField = new CurrencyField(fromCurrencyComboBox.getValue(), BigDecimal.ONE);
 
         anchorPane.getChildren().add(amountTextField);
         amountTextField.setLayoutX(37);
@@ -96,7 +97,10 @@ public class ConvertView implements Initializable {
                 System.out.println(newValue.doubleValue());
             }
         });
+    }
 
+    @FXML
+    public void exchange(){
 
     }
 

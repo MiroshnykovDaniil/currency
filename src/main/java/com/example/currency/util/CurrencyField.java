@@ -1,5 +1,6 @@
 package com.example.currency.util;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
@@ -7,6 +8,7 @@ import java.util.Locale;
 import com.example.currency.api.CurrencyApi;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.NodeOrientation;
@@ -15,14 +17,16 @@ import javafx.scene.control.TextField;
 public class CurrencyField extends TextField{
 
     private NumberFormat format;
-    private SimpleDoubleProperty amount = new SimpleDoubleProperty(this, "amount", 1.00);;
+    //private SimpleDoubleProperty amount = new SimpleDoubleProperty(this, "amount", 1.00);
+
+    private SimpleObjectProperty<BigDecimal> amount = new SimpleObjectProperty<BigDecimal>(this,"amount",new BigDecimal(1.00));
 
     public CurrencyField(){
     }
 
-    public CurrencyField(Currency currency, Double initialAmount) {
+    public CurrencyField(Currency currency, BigDecimal initialAmount) {
         setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        amount = new SimpleDoubleProperty(this, "amount", initialAmount);
+        amount = new SimpleObjectProperty<BigDecimal>(this, "amount", initialAmount);
         format = NumberFormat.getCurrencyInstance();
         format.setCurrency(currency);
 
@@ -51,7 +55,7 @@ public class CurrencyField extends TextField{
      * Get the current amount value
      * @return Total amount
      */
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount.get();
     }
 
@@ -59,7 +63,7 @@ public class CurrencyField extends TextField{
      * Property getter
      * @return SimpleDoubleProperty
      */
-    public SimpleDoubleProperty amountProperty() {
+    public SimpleObjectProperty<BigDecimal> amountProperty() {
         return this.amount;
     }
 
@@ -67,8 +71,8 @@ public class CurrencyField extends TextField{
      * Change the current amount value
      * @param newAmount
      */
-    public void setAmount(Double newAmount) {
-        if(newAmount >= 0.0) {
+    public void setAmount(BigDecimal newAmount) {
+        if(newAmount.compareTo(BigDecimal.ZERO) >= 0) {
             amount.set(newAmount);
             formatText(format.format(newAmount));
         }
@@ -96,7 +100,7 @@ public class CurrencyField extends TextField{
             StringBuilder builder = new StringBuilder(plainText);
             builder.insert(plainText.length() - 2, ".");
 
-            Double newValue = Double.parseDouble(builder.toString());
+            BigDecimal newValue = new BigDecimal(builder.toString());
             amount.set(newValue);
             setText(format.format(newValue));
         }

@@ -1,7 +1,5 @@
 package com.example.currency.api;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
