@@ -28,4 +28,43 @@ public class Rate {
         this.currency = currency;
         this.rate = rate;
     }
+
+
 }
+
+
+/*
+    public ObjectProperty<Currency> currency;
+    public ObjectProperty<BigDecimal> rate;
+
+    public Currency getCurrency() {
+        return currency.get();
+    }
+
+    public void setCurrency(Currency currency) {
+        currencyProperty().set(currency);
+    }
+
+    public BigDecimal getRate() {
+        return rate.get();
+    }
+
+    public ObjectProperty<Currency> currencyProperty(){
+        return currency;
+    }
+
+    public ObjectProperty<BigDecimal> rateProperty(){
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        rateProperty().set(rate);
+    }
+
+    public Rate(Currency currency, BigDecimal rate) {
+        this.currency.set(currency);
+        this.rate.set(rate);
+//        this.currency = currency;
+//        this.rate = rate;
+    }
+ */

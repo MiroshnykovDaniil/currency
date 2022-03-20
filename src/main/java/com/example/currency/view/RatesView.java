@@ -2,6 +2,7 @@ package com.example.currency.view;
 
 import com.example.currency.model.Rate;
 import com.example.currency.viewmodel.RatesViewModel;
+import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -76,6 +77,10 @@ public class RatesView implements Initializable {
         ObservableList<Rate> rates = FXCollections.observableArrayList(
                 new Rate(Currency.getInstance("USD"),BigDecimal.ONE)
         );
+
+//        ObservableList<Rate> rates = FXCollections.observableArrayList(
+//                obs -> new Observable[] {obs.currencyProperty(),obs.rateProperty()}
+//        );
 
         currencyTitle.setCellValueFactory(new PropertyValueFactory<Rate,Currency>("currency"));
         currencyRate.setCellValueFactory(new PropertyValueFactory<Rate,BigDecimal>("rate"));

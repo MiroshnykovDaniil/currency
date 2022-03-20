@@ -5,6 +5,8 @@ import com.example.currency.api.CurrencyApi;
 import com.example.currency.model.Rate;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.JSONObject;
@@ -30,6 +32,10 @@ public class RatesViewModel {
 
     public ObservableList<Rate> rates;
 
+    public Currency currency = Currency.getInstance("USD");
+
+
+
     public void initCurrencyList() throws URISyntaxException, IOException, NoSuchAlgorithmException, InterruptedException, KeyManagementException {
         currencyList = CurrencyApi.currencyList;
     }
@@ -37,11 +43,17 @@ public class RatesViewModel {
 
 
     public ObservableList<Rate> getRatesList(Currency base) throws URISyntaxException, NoSuchAlgorithmException, IOException, InterruptedException, KeyManagementException {
-        List<Rate> list = CurrencyApi.getRatesList(base.getCurrencyCode());
-        rates = FXCollections.observableArrayList(list);
+        rates =  FXCollections.observableArrayList(CurrencyApi.getRatesList(base.getCurrencyCode()));
+        //List<Rate> list = CurrencyApi.getRatesList(base.getCurrencyCode());
+        //rates = FXCollections.observableArrayList(list);
+
+        Observable.interval(0,60, TimeUnit.SECONDS, Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(s -> {
+                    rates = FXCollections.observableArrayList(CurrencyApi.getRatesList(base.getCurrencyCode()));
+                });
 
         return rates.sorted();
-
 
     }
 
