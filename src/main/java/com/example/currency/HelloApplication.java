@@ -1,5 +1,6 @@
 package com.example.currency;
 
+import com.example.currency.api.CurrencyApi;
 import com.example.currency.config.AppConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 public class HelloApplication extends Application {
 
@@ -17,7 +21,17 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-
+        try{
+        CurrencyApi.getCurrencyList();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
